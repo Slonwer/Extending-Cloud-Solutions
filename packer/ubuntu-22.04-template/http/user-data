@@ -1,0 +1,28 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: "ubuntu-template"
+    username: "packer"
+    password: "packer"
+  ssh:
+    install-server: true
+    authorized-keys:
+    - "this-will-be-replaced-by-ansible"
+    allow-pw: false
+    disable_root: true
+    ssh_quiet_keygen: true
+    allow_public_ssh_keys: true
+  packages:
+    - qemu-guest-agent
+    - sudo
+  user-data:
+    package_upgrade: false
+    timezone: America/Montreal
+    users:
+      - name: "packer"
+        groups: [adm, sudo]
+        lock-passwd: false
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash
+        passwd: "packer"
