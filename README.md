@@ -9,5 +9,3 @@ Generate an ubuntu server cloud-init ready template with Packer, infrastructure 
 
 <img src="https://i.imgur.com/SKsU33z.png" width="90%" height="90%">
 
-
-
