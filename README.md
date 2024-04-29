@@ -9,3 +9,14 @@ Generate an ubuntu server cloud-init ready template with Packer, infrastructure 
 
 <img src="https://i.imgur.com/SKsU33z.png" width="90%" height="90%">
 
+
+
+```Modelo de linguagem usada
+*Kubernet
+*Proxmox
+*Ansible
+*Imagem linux de inicialização
+
+Tecnologia de automação de um servidor juntamente com arduino como base de referencia....
+
+```
