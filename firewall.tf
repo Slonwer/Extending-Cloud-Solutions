@@ -1,41 +1,52 @@
-//Configuração do firewall do terraform
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
-  location = "West Europe"
+// Configuração do firewall do Proxmox com Terraform
+provider "proxmox" {
+  pm_api_url   = "https://sua-url-do-proxmox"
+  pm_password  = "sua-senha"
+  pm_user      = "seu-usuario"
+  pm_insecure  = true // Ajuste conforme necessário
 }
 
-resource "azurerm_virtual_network" "example" {
-  name                = "testvnet"
-  address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-}
-
-resource "azurerm_subnet" "example" {
-  name                 = "AzureFirewallSubnet"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["10.0.1.0/24"]
-}
-
-resource "azurerm_public_ip" "example" {
-  name                = "testpip"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  allocation_method   = "Static"
-  sku                 = "Standard"
-}
-
-resource "azurerm_firewall" "example" {
-  name                = "testfirewall"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  sku_name            = "AZFW_VNet"
-  sku_tier            = "Standard"
-
-  ip_configuration {
-    name                 = "configuration"
-    subnet_id            = azurerm_subnet.example.id
-    public_ip_address_id = azurerm_public_ip.example.id
+resource "proxmox_vm_qemu" "example" {
+  name       = "testvm"
+  vmid       = 100
+  os_type    = "l26" // ou "windows" conforme necessário
+  agent      = 1 // Ativar agente se necessário
+  bios       = "seabios"
+  scsihw     = "virtio-scsi-pci"
+  balloon    = 0
+  kvm        = 1
+  memory     = 512
+  sockets    = 1
+  cores      = 1
+  cpu        = "host"
+  numa       = 0
+  network {
+    model    = "virtio"
+    bridge   = "vmbr0"
   }
+  ide0       = "local:iso/your_os_image.iso,media=cdrom"
+  disk {
+    storage  = "local"
+    size     = 10G
+    format   = "qcow2"
+  }
+  on_shutdown = "destroy"
+}
+
+resource "proxmox_firewall_group" "example" {
+  name       = "testgroup"
+  comment    = "Test firewall group"
+  // Outras configurações conforme necessário
+}
+
+resource "proxmox_firewall_ipset" "example" {
+  name       = "testipset"
+  comment    = "Test IP set"
+  // Outras configurações conforme necessário
+}
+
+resource "proxmox_firewall_rule" "example" {
+  name       = "testrule"
+  comment    = "Test firewall rule"
+  // Outras configurações conforme necessário
 }
