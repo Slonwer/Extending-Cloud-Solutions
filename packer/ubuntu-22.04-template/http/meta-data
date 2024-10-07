@@ -1,12 +1,12 @@
 server {
     listen 80;
-    server_name example.com www.example.com;
+    server_name extendcloud.com www.extendcloud.com;
     return 301 https://$host$request_uri;  # Redireciona HTTP para HTTPS
 }
 
 server {
     listen 443 ssl;
-    server_name example.com www.example.com;
+    server_name extendcloud.com www.extendcloud.com;
 
     ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
@@ -20,19 +20,19 @@ server {
     }
 }
 <VirtualHost *:80>
-    ServerName example.com
-    ServerAlias www.example.com
-    Redirect "/" "https://example.com/"
+    ServerName extendcloud.com
+    ServerAlias www.extendcloud.com
+    Redirect "/" "https://extendcloud.com/"
 </VirtualHost>
 
 <VirtualHost *:443>
-    ServerName example.com
-    ServerAlias www.example.com
+    ServerName extendcloud.com
+    ServerAlias www.extendcloud.com
 
     SSLEngine on
-    SSLCertificateFile /etc/letsencrypt/live/example.com/fullchain.pem
-    SSLCertificateKeyFile /etc/letsencrypt/live/example.com/privkey.pem
-    SSLCertificateChainFile /etc/letsencrypt/live/example.com/chain.pem
+    SSLCertificateFile /etc/letsencrypt/live/extendcloud.com/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/extendcloud.com/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/extendcloud.com/chain.pem
 
     # Ajustes de segurança
     SSLProtocol All -SSLv2 -SSLv3
