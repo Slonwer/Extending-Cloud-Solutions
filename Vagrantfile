@@ -15,3 +15,10 @@ Vagrant.configure("2") do |config|
         end
     end
 end
+  (1..2).each do |i|
+        config.vm.define "lb_ipvsadm_#{i}" do |lb_ipvsadm|
+            lb_ipvsadm.vm.box = "debian/jessie64"
+            lb_ipvsadm.vm.network "public_network", bridge: "enp8s0", ip: "192.168.0.12#{i+3}"
+            lb_ipvsadm.vm.provision "shell", path: "lb_ipvsadm.sh"
+        end
+    end
