@@ -15,7 +15,8 @@ Generate an ubuntu server cloud-init ready template with Packer, infrastructure 
 *Kubernet
 *Proxmox
 *Ansible
-*Imagem linux de inicialização
+* FTP SSH SSL DHCP 
+*ISO linux de inicialization
 
 Tecnologia de automação de um servidor juntamente com arduino como base de referencia....
 
