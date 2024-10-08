@@ -1,8 +1,8 @@
 // Configuração do firewall do Proxmox com Terraform
 provider "proxmox" {
   pm_api_url   = "https://sua-url-do-proxmox"
-  pm_password  = "sua-senha"
-  pm_user      = "seu-usuario"
+  pm_password  = "*******"
+  pm_user      = "*****"
   pm_insecure  = true // Ajuste conforme necessário
 }
 
@@ -47,6 +47,6 @@ resource "proxmox_firewall_ipset" "example" {
 
 resource "proxmox_firewall_rule" "example" {
   name       = "testrule"
-  comment    = "Test firewall rule"
+  comment    = "Test firewall rule" 
   // Outras configurações conforme necessário
 }
