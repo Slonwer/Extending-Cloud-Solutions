@@ -6,6 +6,8 @@ Extending Cloud Solutions" é uma empresa inovadora especializada em oferecer se
 
 Generate an ubuntu server cloud-init ready template with Packer, infrastructure deployment with Terraform and Kubernetes cluster configuration with Ansible. 
 
+Na inicialização da maquina virtual ele automaticamente execultar simuntaneamente mais maquina virtual e se comporta de acordo com o tipo de ISO e armazenamento que foi programado sendo util para quem deseja ter mais eficiencia em tarefa ou gerenciar redes de teste e controle de servidores 
+
 
 <img src="https://www.datocms-assets.com/2885/1552511797-hashicorp-stack-2019.jpg" width="90%" height="90%">
 
