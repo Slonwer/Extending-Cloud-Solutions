@@ -109,7 +109,8 @@ resource "proxmox_vm_qemu" "c1-ansible" {
         host        = var.ansible_host_ip                                 # Host para conexão SSH
         user        = var.username                                      # Usuário para conexão SSH
         password    = var.username                                      # Senha para conexão SSH
-        private_key = file(var.private_key_path)                          # Chave privada para conexão SSH
+        private_key = file(var.private_key_path)   
+        public key  = file(var.public_key_path)                       # Chave publica para conexão SSH
     }
 
     # Copia a chave SSH para a máquina virtual
